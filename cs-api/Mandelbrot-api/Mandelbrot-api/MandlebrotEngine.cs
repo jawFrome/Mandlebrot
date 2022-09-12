@@ -1,4 +1,5 @@
 ﻿using System.Data.Common;
+using System.Drawing;
 
 namespace Mandelbrot_api
 {
@@ -12,8 +13,28 @@ namespace Mandelbrot_api
     /// </remarks>
     public class MandlebrotEngine
     {
-        public const int UpperIterationLimit = 100;
+        public const int UpperIterationLimit = byte.MaxValue;
         public const double UpperSquaredLimit = 4;
+
+        public static Image GetImageOfRange(Complex upperLeft, Complex lowerRight, double resolution)
+        {
+            var width = (int)Math.Truncate((lowerRight.Real - upperLeft.Real) / resolution);
+            var height = (int)Math.Truncate((upperLeft.Imag - lowerRight.Imag) / resolution);
+            var image = new Bitmap(width, height);
+            int x = 0;
+            for (double real = upperLeft.Real; real < lowerRight.Real; real += resolution)
+            {
+                int y = 0;
+                for (double imag = upperLeft.Imag; imag > lowerRight.Imag; imag -= resolution)
+                {
+                    image.SetPixel(x, y, Color.FromArgb(0, 0, MandlebrotEngine.Process(new Complex(real, imag))));
+                    y += 1;
+                }
+                x += 1;
+            }
+
+            return image;
+        }
                   
 
         public static bool IsInTheSet(Complex c)
@@ -26,9 +47,9 @@ namespace Mandelbrot_api
             return !(Process(c) < UpperIterationLimit);
         }
 
-        private static int Process(Complex c)
+        public static byte Process(Complex c)
         {
-            int depth = 0;
+            byte depth = 0;
             var Zn = new Complex(0, 0);
             do
             {

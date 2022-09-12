@@ -3,6 +3,8 @@
 namespace Mandlebrot_api_test
 {
     using Mandelbrot_api;
+    using System.Drawing;
+
     internal class MandlebrotTests
     {
        static object[] IsInTheSetCases =
