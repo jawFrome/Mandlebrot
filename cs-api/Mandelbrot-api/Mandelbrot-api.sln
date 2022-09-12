@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mandelbrot-api", "Mandelbro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandlebrot-api-test", "Mandlebrot-api-test\Mandlebrot-api-test.csproj", "{91951AEC-D4AB-4F80-8061-4ABD5817F58A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactFrontEnd", "..\..\ui\ReactFrontEnd\ReactFrontEnd.csproj", "{ADE4FCA0-F6F1-480E-A8CD-9EB5848A3DA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{91951AEC-D4AB-4F80-8061-4ABD5817F58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91951AEC-D4AB-4F80-8061-4ABD5817F58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91951AEC-D4AB-4F80-8061-4ABD5817F58A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE4FCA0-F6F1-480E-A8CD-9EB5848A3DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE4FCA0-F6F1-480E-A8CD-9EB5848A3DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE4FCA0-F6F1-480E-A8CD-9EB5848A3DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE4FCA0-F6F1-480E-A8CD-9EB5848A3DA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
