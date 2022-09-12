@@ -16,17 +16,7 @@ namespace Mandelbrot_api.Controllers
         [HttpGet(Name = "IsInSet")]
         public ActionResult<bool> Get([FromQuery] Complex C)
         {
-            if (C == null)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-
-            if (Math.Abs(C.Real) > 2 || Math.Abs(C.Imag) > 2)
-            {
-                return false;
-            }
-
-            return MandlebrotEngine.Process(C) < MandlebrotEngine.UpperIterationLimit;
+            return MandlebrotEngine.IsInTheSet(C);
         }
     }
 }

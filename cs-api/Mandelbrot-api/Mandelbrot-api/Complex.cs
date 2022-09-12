@@ -1,9 +1,17 @@
-﻿namespace Mandelbrot_api
+﻿
+namespace Mandelbrot_api
 {
-    public class Complex
+    public struct Complex
     {
         public double Real { get; set; }
         public double Imag { get; set; }
+              
+
+        public Complex(double real, double imag)
+        {
+            Real = real;
+            Imag = imag;
+        }
 
         public double RadiusSquared
         {
@@ -35,6 +43,38 @@
             };
 
             return multipliedValue;
+        }
+
+        public override bool Equals(object? x)
+        {
+            if (x is Complex other)
+            {
+                if (x == null)
+                {
+                    return false;
+                }
+
+                return other.Real == this.Real && other.Imag == this.Imag;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool operator ==(Complex left, Complex right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Complex left, Complex right)
+        {
+            return !(left == right);
+        }
+
+        public override int GetHashCode()
+        {
+            return Tuple.Create(Real, Imag).GetHashCode();
         }
     }
 }
