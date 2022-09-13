@@ -20,15 +20,12 @@ namespace Mandelbrot_api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors(x => x.WithOrigins("https://localhost").AllowAnyMethod().AllowAnyHeader());
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }
