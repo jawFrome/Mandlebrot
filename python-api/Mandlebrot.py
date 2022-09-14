@@ -1,7 +1,7 @@
 import cmath
 import numpy as np
 import math
-from ImageBuilder import createImageFromArray
+from ImageBuilder import createImageFromArrayAsRawBytes
 
 UpperIterationLimit = 255
 UpperSquaredLimit = 4
@@ -28,7 +28,7 @@ def getImageOfRange(upperLeft, lowerRight, resolution = 0.01):
         
         x = x + 1           
 
-    return createImageFromArray(depthValues);       
+    return createImageFromArrayAsRawBytes(depthValues);       
         
 
 def Process(real, imag):

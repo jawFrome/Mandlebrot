@@ -1,5 +1,5 @@
 import flask
-from flask import request, jsonify
+from flask import request, jsonify, send_file
 from flask_api import status
 from Mandlebrot import IsInTheSet, getImageOfRange
 
@@ -30,6 +30,8 @@ def imageOfRange():
     if (minreal > maxreal or minimag > maximag):            
             return "Min and max values incorrect", status.HTTP_400_BAD_REQUEST            
   
-    return getImageOfRange([minreal, maximag], [maxreal, minimag])
+    image = getImageOfRange([minreal, maximag], [maxreal, minimag])
+
+    return send_file(image, mimetype='image/bmp')
 
 app.run()
