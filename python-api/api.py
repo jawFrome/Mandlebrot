@@ -1,6 +1,7 @@
 import flask
 from flask import request, jsonify
-from Mandlebrot import IsInTheSet
+from flask_api import status
+from Mandlebrot import IsInTheSet, getImageOfRange
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -16,7 +17,19 @@ def isInSet():
 
     return jsonify(IsInTheSet(real, imag))
 
+@app.route('/imageofrange', methods=['GET'])
 def imageOfRange():
-    return "Todo"
+    if 'minreal' in request.args and 'minimag' in request.args and 'maxreal' in request.args and 'maximag' in request.args:
+        minreal = float(request.args['minreal'])
+        minimag = float(request.args['minimag'])
+        maxreal = float(request.args['maxreal'])
+        maximag = float(request.args['maximag'])
+    else:
+        return "Error: No min/max real or imag provided. Please specify."
+
+    if (minreal > maxreal or minimag > maximag):            
+            return "Min and max values incorrect", status.HTTP_400_BAD_REQUEST            
+  
+    return getImageOfRange([minreal, maximag], [maxreal, minimag])
 
 app.run()

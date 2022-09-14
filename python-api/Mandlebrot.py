@@ -1,4 +1,7 @@
 import cmath
+import numpy as np
+import math
+from ImageBuilder import createImageFromArray
 
 UpperIterationLimit = 255
 UpperSquaredLimit = 4
@@ -9,6 +12,23 @@ def IsInTheSet(real, imag):
                 return False            
 
     return not(Process(c.real, c.imag) < UpperIterationLimit)
+
+def getImageOfRange(upperLeft, lowerRight, resolution = 0.01): 
+    upperLeft = complex(upperLeft[0], upperLeft[1])       
+    lowerRight = complex(lowerRight[0], lowerRight[1]) 
+    width = math.trunc((lowerRight.real - upperLeft.real) / resolution)
+    height = math.trunc((upperLeft.imag - lowerRight.imag) / resolution)
+    depthValues = np.empty(width * height, dtype=int).reshape(width,height)
+    x = 0
+    for real in np.arange(upperLeft.real, lowerRight.real, resolution):
+        y = 0
+        for imag in np.arange(upperLeft.imag, lowerRight.imag, -resolution):        
+            depthValues[x,y] = Process(real, imag)
+            y = y + 1
+        
+        x = x + 1           
+
+    return createImageFromArray(depthValues);       
         
 
 def Process(real, imag):
