@@ -15,17 +15,19 @@ namespace Mandelbrot_api
     {
         public const int UpperIterationLimit = byte.MaxValue;
         public const double UpperSquaredLimit = 4;
+        const int Width = 800;
+        const int Height = 800;
 
-        public static Image GetImageOfRange(Complex upperLeft, Complex lowerRight, double resolution)
+        public static Image GetImageOfRange(Complex upperLeft, Complex lowerRight)
         {
-            var width = (int)Math.Truncate((lowerRight.Real - upperLeft.Real) / resolution);
-            var height = (int)Math.Truncate((upperLeft.Imag - lowerRight.Imag) / resolution);
-            var image = new Bitmap(width, height);
+            var xResolution = (lowerRight.Real - upperLeft.Real) / Width;
+            var yResolution = (upperLeft.Imag - lowerRight.Imag) / Height;
+            var image = new Bitmap(Width, Height);
             int x = 0;
-            for (double real = upperLeft.Real; real < lowerRight.Real; real += resolution)
+            for (double real = upperLeft.Real; real < lowerRight.Real; real += xResolution)
             {
                 int y = 0;
-                for (double imag = upperLeft.Imag; imag > lowerRight.Imag; imag -= resolution)
+                for (double imag = upperLeft.Imag; imag > lowerRight.Imag; imag -= yResolution)
                 {
                     image.SetPixel(x, y, Color.FromArgb(0, 0, MandlebrotEngine.Process(new Complex(real, imag))));
                     y += 1;

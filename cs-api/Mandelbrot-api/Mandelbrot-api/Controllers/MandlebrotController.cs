@@ -29,7 +29,7 @@ namespace Mandelbrot_api.Controllers
 
             var upperLeft = new Complex(minReal, maxImag);
             var lowerRight = new Complex(maxReal, minImag);;
-            var image = MandlebrotEngine.GetImageOfRange(upperLeft, lowerRight, 0.01);
+            var image = MandlebrotEngine.GetImageOfRange(upperLeft, lowerRight);
             return ImageConverter.ToByteArray(image);           
         }
     }
