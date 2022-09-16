@@ -23,11 +23,15 @@ def getImageOfRange(upperLeft, lowerRight):
     x = 0
     for real in np.arange(upperLeft.real, lowerRight.real, x_resolution):
         y = 0
-        for imag in np.arange(upperLeft.imag, lowerRight.imag, -y_resolution):        
+        for imag in np.arange(lowerRight.imag, upperLeft.imag, y_resolution):        
             depthValues[x,y] = Process(real, imag)
             y = y + 1
+            if y >= Height:
+                break
         
-        x = x + 1           
+        x = x + 1    
+        if x >= Width:
+            break       
 
     return createImageFromArrayAsRawBytes(depthValues);       
         
