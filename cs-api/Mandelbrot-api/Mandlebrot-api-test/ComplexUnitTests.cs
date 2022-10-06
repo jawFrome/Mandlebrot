@@ -20,6 +20,7 @@ namespace Mandlebrot_api_test
 
         static object[] ComplexEqualsCases =
         {
+            new object[] { null, null, true },
             new object[] { new Complex(1, 2), null, false },
             new object[] { new Complex(1, 2), new Complex(2, 1), false },
             new object[] { new Complex(1, 2), new Complex(1, 2), true },
